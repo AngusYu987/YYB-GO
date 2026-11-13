@@ -759,7 +759,7 @@ def load_accounts():
         sys.exit(1)
     entries = [
         line.strip()
-        for line in raw.splitlines()
+        for line in raw.replace("\r", "").replace("\n", "|").split("|")
         if line.strip() and line.strip() != "[object Object]"
     ]
     if not entries:

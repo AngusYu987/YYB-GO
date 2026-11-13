@@ -127,7 +127,7 @@ def json_response(response: requests.Response, action: str) -> dict[str, Any]:
 
 def parse_accounts() -> list[Account]:
     accounts: list[Account] = []
-    for raw in os.getenv("YYB_SERVER", "").splitlines():
+    for raw in os.getenv("YYB_SERVER", "").replace("\r", "").replace("\n", "|").split("|"):
         line = raw.strip()
         if not line or "@" not in line or line == "[object Object]":
             continue

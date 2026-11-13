@@ -82,7 +82,7 @@ def signed_headers(token: str = "") -> Tuple[Dict[str, str], str]:
 
 def parse_servers(raw: str) -> List[Tuple[str, str]]:
     result: List[Tuple[str, str]] = []
-    for line in raw.splitlines():
+    for line in raw.replace("\r", "").replace("\n", "|").split("|"):
         value = line.strip()
         if not value or value == "[object Object]":
             continue

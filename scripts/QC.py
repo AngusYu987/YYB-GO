@@ -123,7 +123,7 @@ from yyb_account_guard import filter_accounts, update_from_result
 SERVERS = []
 env_YYB_SERVER = os.getenv("YYB_SERVER", "")
 if env_YYB_SERVER:
-    raw_lines = env_YYB_SERVER.splitlines()
+    raw_lines = env_YYB_SERVER.replace("\r", "").replace("\n", "|").split("|")
     SERVERS = [line.strip() for line in raw_lines if line.strip()]
 
 # 无有效地址直接退出并提示

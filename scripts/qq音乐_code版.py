@@ -102,7 +102,7 @@ def load_account_targets() -> List[AccountTarget]:
         return [AccountTarget(server=server, index=index) for index, server in enumerate(servers, 1)]
 
     accounts: List[AccountTarget] = []
-    for line in raw.splitlines():
+    for line in raw.replace("\r", "").replace("\n", "|").split("|"):
         line = line.strip()
         if not line:
             continue

@@ -29,7 +29,7 @@ PAYCONFIG_ID = "2"
 # YYB server from env (YYB-GO standard)
 YYB_WX_SERVER = ""
 YYB_REFS: List[str] = []  # Empty means auto fetch all refs from YYB /accounts.
-for entry in os.environ.get("YYB_SERVER", "").splitlines():
+for entry in os.environ.get("YYB_SERVER", "").replace("\r", "").replace("\n", "|").split("|"):
     entry = entry.strip()
     if not entry:
         continue

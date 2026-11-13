@@ -95,7 +95,7 @@ def safe_text(value: Any, limit: int = 260) -> str:
 
 def parse_accounts() -> list[Account]:
     rows: list[Account] = []
-    for raw in os.getenv("YYB_SERVER", "").splitlines():
+    for raw in os.getenv("YYB_SERVER", "").replace("\r", "").replace("\n", "|").split("|"):
         line = raw.strip()
         if not line or line.startswith("#") or "@" not in line or line == "[object Object]":
             continue

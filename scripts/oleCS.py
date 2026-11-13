@@ -50,7 +50,7 @@ def parse_yyb_go():
     """解析 YYB_SERVER 环境变量，格式：地址@微信账号标识，多行换行"""
     raw = os.getenv("YYB_SERVER", "")
     accounts = []
-    for idx, line in enumerate(raw.splitlines(), 1):
+    for idx, line in enumerate(raw.replace("\r", "").replace("\n", "|").split("|"), 1):
         value = str(line or "").strip()
         if not value:
             continue

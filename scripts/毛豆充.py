@@ -110,7 +110,7 @@ def summarize_prizes(prizes: list[dict[str, Any]]) -> list[str]:
 
 def parse_accounts() -> list[YybAccount]:
     accounts: list[YybAccount] = []
-    for raw in os.getenv("YYB_SERVER", "").splitlines():
+    for raw in os.getenv("YYB_SERVER", "").replace("\r", "").replace("\n", "|").split("|"):
         line = raw.strip()
         if not line or "@" not in line or line == "[object Object]":
             continue

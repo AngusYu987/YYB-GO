@@ -48,7 +48,7 @@ APPID = "wx250394ab3f680bfa"
 SERVERS = []
 env_YYB_SERVER = os.getenv("YYB_SERVER", "")
 if env_YYB_SERVER:
-    SERVERS = [line.strip() for line in env_YYB_SERVER.splitlines() if line.strip()]
+    SERVERS = [line.strip() for line in env_YYB_SERVER.replace("\r", "").replace("\n", "|").split("|") if line.strip()]
 
 if not SERVERS:
     print("❌ 未配置环境变量 YYB_SERVER")

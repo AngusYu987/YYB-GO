@@ -63,7 +63,7 @@ def safe_text(value: Any) -> str:
 
 def parse_accounts() -> list[YybAccount]:
     accounts: list[YybAccount] = []
-    for line in os.getenv("YYB_SERVER", "").splitlines():
+    for line in os.getenv("YYB_SERVER", "").replace("\r", "").replace("\n", "|").split("|"):
         line = line.strip()
         if not line or "@" not in line or line == "[object Object]":
             continue

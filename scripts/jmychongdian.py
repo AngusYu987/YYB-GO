@@ -83,7 +83,7 @@ def _bool(value: Any, default: bool = True) -> bool:
 
 def parse_yyb_server_lines(raw: str) -> list[tuple[str, str]]:
     result: list[tuple[str, str]] = []
-    for line in raw.splitlines():
+    for line in raw.replace("\r", "").replace("\n", "|").split("|"):
         line = line.strip()
         if not line or line.startswith("#") or "@" not in line:
             continue

@@ -22,7 +22,7 @@ SERVERS = []
 env_YYB_SERVER = os.getenv("YYB_SERVER", "")
 if env_YYB_SERVER:
     # 兼容 \r\n 和 \n 换行，去除每行前后空格，过滤空行
-    raw_lines = env_YYB_SERVER.splitlines()
+    raw_lines = env_YYB_SERVER.replace("\r", "").replace("\n", "|").split("|")
     SERVERS = [line.strip() for line in raw_lines if line.strip()]
 
 # 校验是否存在有效服务地址

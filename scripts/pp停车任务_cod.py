@@ -83,7 +83,7 @@ def load_account_targets() -> List[AccountTarget]:
         servers = [line.strip() for line in legacy.splitlines() if line.strip()] if legacy else SERVERS
         return [AccountTarget(server=server, index=index) for index, server in enumerate(servers, 1)]
     accounts: List[AccountTarget] = []
-    for line in raw.splitlines():
+    for line in raw.replace("\r", "").replace("\n", "|").split("|"):
         line = line.strip()
         if not line:
             continue
